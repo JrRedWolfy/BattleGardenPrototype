@@ -65,9 +65,9 @@ public class Batalla extends javax.swing.JPanel {
 
         jLabelEstamina.setText("ESTAMINA:");
 
-        jLabelEnemigo.setIcon(new javax.swing.ImageIcon("C:\\Users\\RedCa\\Desktop\\Netbean\\Enemigo.jpg")); // NOI18N
+        jLabelEnemigo.setIcon(new javax.swing.ImageIcon("/home/alumnodaw/Escritorio/Enemigo.jpg")); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\RedCa\\Desktop\\Netbean\\YOp.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/alumnodaw/Escritorio/Aliado.jpg")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,9 +99,9 @@ public class Batalla extends javax.swing.JPanel {
                                 .addGap(29, 29, 29)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
+                                .addGap(34, 34, 34)
                                 .addComponent(jLabelEnemigo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(30, 30, 30)
                                 .addComponent(jLabelAccionEnemiga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)

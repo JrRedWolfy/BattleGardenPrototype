@@ -46,9 +46,9 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="jLabelEnemigo" min="-2" pref="170" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabelAccionEnemiga" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -135,14 +135,14 @@
     <Component class="javax.swing.JLabel" name="jLabelEnemigo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\RedCa\Desktop\Netbean\Enemigo.jpg"/>
+          <Image iconType="2" name="/home/alumnodaw/Escritorio/Enemigo.jpg"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\RedCa\Desktop\Netbean\YOp.jpg"/>
+          <Image iconType="2" name="/home/alumnodaw/Escritorio/Aliado.jpg"/>
         </Property>
       </Properties>
     </Component>

@@ -94,6 +94,8 @@ public class Menu extends javax.swing.JPanel {
 
         jTextFieldAplicado.setEditable(false);
 
+        jSpinnerSelect.setRequestFocusEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
