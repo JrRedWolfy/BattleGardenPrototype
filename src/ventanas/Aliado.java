@@ -26,7 +26,7 @@ public class Aliado extends javax.swing.JFrame {
     
     @Override
     public Image getIconImage(){
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("LoboIcono.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/LoboIcono.png"));
         return retValue;
     }
     
