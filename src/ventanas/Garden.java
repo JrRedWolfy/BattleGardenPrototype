@@ -101,7 +101,12 @@ public class Garden extends javax.swing.JFrame {
                }
                break;
            case "FINTAR":
-               
+               switch (accionEne){
+                   
+                   
+                   
+                   
+               }
                
                
                break;
