@@ -42,7 +42,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextFieldNombreB" pref="150" max="32767" attributes="0"/>
+                                          <Component id="jTextFieldNombreB" max="32767" attributes="0"/>
                                           <Component id="jProgressBarVidaB" max="32767" attributes="0"/>
                                           <Component id="jProgressBarEstaminaB" alignment="0" max="32767" attributes="0"/>
                                       </Group>

@@ -236,10 +236,10 @@ public class Aliado extends javax.swing.JFrame {
             nombre = "???";
         }
         
+        Player leon = new Player("", "CURARSE", "ESPADA", 100, 100, 0, 0, "");
         Player lobo = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo, "");
-        Player leon = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo, "");
         
-        Enemigo leo = new Enemigo(lobo, leon, mDialogo);
+        Enemigo leo = new Enemigo(lobo, leon, turno, mDialogo);
         leo.setVisible(true);
         this.dispose();
         

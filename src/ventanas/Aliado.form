@@ -50,7 +50,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jTextFieldNombre" max="32767" attributes="0"/>
-                                          <Component id="jProgressBarVida" pref="150" max="32767" attributes="0"/>
+                                          <Component id="jProgressBarVida" max="32767" attributes="0"/>
                                           <Component id="jProgressEstamina" alignment="1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>

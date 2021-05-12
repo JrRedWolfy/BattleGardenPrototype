@@ -175,10 +175,6 @@ public class Garden extends javax.swing.JFrame {
 
         jLabel2.setText("VIDA:");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\RedCa\\Desktop\\Netbean\\BattleGardenPrototype\\src\\imagenes\\YOp.jpg")); // NOI18N
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\RedCa\\Desktop\\Netbean\\BattleGardenPrototype\\src\\imagenes\\Enemigo.jpg")); // NOI18N
-
         jButton1.setText("NEXT TURN --->");
 
         jLabel5.setText("DECIR:");

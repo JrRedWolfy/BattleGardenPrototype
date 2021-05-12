@@ -20,8 +20,13 @@ public class Enemigo extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Enemigo(Player lobo, Player leon, javax.swing.DefaultListModel mDialogo) {
+    public Enemigo(Player lobo, Player leon, String turno, javax.swing.DefaultListModel mDialogo) {
         initComponents();
+        
+        turnoB = turno;
+        jugador = leon;
+        mDialog = mDialogo;
+        
     }
 
     /**
@@ -220,7 +225,7 @@ public class Enemigo extends javax.swing.JFrame {
         
         Player leon = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo, "");
         
-        Garden zone = new Garden(leon, lobo, turno, mDialogo);
+        Garden zone = new Garden(leon, jugador, turnoB, mDialog);
         zone.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
@@ -261,7 +266,9 @@ public class Enemigo extends javax.swing.JFrame {
         });
     }
 
-    
+    private String turnoB;
+    private javax.swing.DefaultListModel mDialog;
+    private Player jugador;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
