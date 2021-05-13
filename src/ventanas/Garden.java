@@ -24,12 +24,22 @@ public class Garden extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        String accionEne = "ATACAR";
+        accion = lobo.getAccion();
+        arma = lobo.getArma();
+        esfuerzo = lobo.getEsfuerzo();
+        estamina = lobo.getEstamina();
+        vida = lobo.getVida();
+        minimo = lobo.getMinimo();
+        
+        String accionEne = leon.getAccion();
         int rendimiento = estamina - esfuerzo;
         
         jTextFieldActAlly.setText(lobo.getAccion());
         jTextFieldArmaAlly.setText(lobo.getArma());
         jLabelNombre.setText(lobo.getNombre() + ":");
+        
+        jTextFieldActEnemy.setText(leon.getAccion());
+        jTextFieldArmaEnemy.setText(leon.getArma());
         //Especiales
         boolean desarmado = false;
         
@@ -304,7 +314,7 @@ public class Garden extends javax.swing.JFrame {
     }
 
     
-    
+    private int minimo;
     private String accion;
     private String arma;
     private String nombre;
