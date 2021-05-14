@@ -22,6 +22,7 @@ public class Enemigo extends javax.swing.JFrame {
     
     public Enemigo(Player lobo, Player leon, String turno, javax.swing.DefaultListModel mDialogo) {
         initComponents();
+        this.setLocationRelativeTo(null);
         
         turnoB = turno;
         jugador = leon;

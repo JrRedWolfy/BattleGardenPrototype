@@ -24,7 +24,11 @@ public class Garden extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        accion = lobo.getAccion();
+        this.lobo=lobo;
+        this.leon=leon;
+        
+        
+        accion = this.lobo.getAccion();
         arma = lobo.getArma();
         esfuerzo = lobo.getEsfuerzo();
         estamina = lobo.getEstamina();
@@ -313,6 +317,8 @@ public class Garden extends javax.swing.JFrame {
         });
     }
 
+    private Player lobo;
+    private Player leon;
     
     private int minimo;
     private String accion;
