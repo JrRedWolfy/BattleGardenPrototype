@@ -27,32 +27,54 @@ public class Garden extends javax.swing.JFrame {
         this.lobo=lobo;
         this.leon=leon;
         
-        
-        accion = this.lobo.getAccion();
+        // Atributos Aliado
+        accion = lobo.getAccion();
         arma = lobo.getArma();
         esfuerzo = lobo.getEsfuerzo();
         estamina = lobo.getEstamina();
         vida = lobo.getVida();
         minimo = lobo.getMinimo();
-        
-        String accionEne = leon.getAccion();
         int rendimiento = estamina - esfuerzo;
         
-        jTextFieldActAlly.setText(lobo.getAccion());
-        jTextFieldArmaAlly.setText(lobo.getArma());
+        // Atributos Enemigo
+        accionEn = leon.getAccion();
+        esfuerzoEn = leon.getEsfuerzo();
+        estaminaEn = leon.getEstamina();
+        vidaEn = leon.getVida();
+        minimoEn = leon.getMinimo();
+        armaEn = leon.getArma();
+        int rendimientoEn = estaminaEn - esfuerzoEn;
+        
+        
+        
+        jTextFieldActAlly.setText(accion);
+        jTextFieldArmaAlly.setText(arma);
         jLabelNombre.setText(lobo.getNombre() + ":");
         
-        jTextFieldActEnemy.setText(leon.getAccion());
-        jTextFieldArmaEnemy.setText(leon.getArma());
+        jTextFieldActEnemy.setText(accionEn);
+        jTextFieldArmaEnemy.setText(armaEn);
         //Especiales
         boolean desarmado = false;
         
-       // Calcular Vida
+       // Calcular Vida Aliada
        double danio = 0;
        double cura = 0;
        double modArma;
        double aE = (esfuerzo/5);
+       
+       //Calcular Vida Enemiga
+       double danioEn = 0;
+       double curaEn = 0;
+       double modArmaEn;
+       double aEEn = (esfuerzoEn/5);
        //aE = Esfuerzo Aplicado, mas Esfuerzo en el ataque, mas daño. Por cada 5 de Esfuerzo, aE += 1
+       
+       
+       if (armaEn == "ESPADA"){
+           modArmaEn = 1;
+       } else {
+           modArmaEn = 0.5;
+       }
        
        if (arma == "ESPADA"){
            modArma = 1;
@@ -60,24 +82,23 @@ public class Garden extends javax.swing.JFrame {
            modArma = 0.5;
        }
        
-       
         
        switch (accion){
            case "CURARSE":
-               switch (accionEne){
+               switch (accionEn){
                     case "FINTAR":
-                        danio = (40*modArma)+(modArma*4*aE); 
+                        danio = (40*modArmaEn)+(modArmaEn*4*aEEn); 
                         // daño base(Finta)*arma + Esfuerzo
                         cura = 25;
                         rendimiento += 25;
                         break;
                     case "ARREMETER":
-                        danio = (50*modArma)+(modArma*5*aE)+20;
+                        danio = (50*modArmaEn)+(modArmaEn*5*aEEn)+20;
                         cura = 25;
                         rendimiento += 25;
                         break;
                     case "ATACAR":
-                        danio = (20*modArma)+(modArma*2*aE);
+                        danio = (20*modArmaEn)+(modArmaEn*2*aEEn);
                         cura = 25;
                         rendimiento += 25;
                         break;
@@ -88,9 +109,38 @@ public class Garden extends javax.swing.JFrame {
                     }
                break;
            case "BLOQUEAR":
-               switch (accionEne){
+               switch (accionEn){
                     case "ATACAR":
-                        danio = (modArma*2*aE)-10;
+                        danio = (modArmaEn*2*aEEn)-10;
+                        rendimiento -= danio;
+                        if (rendimiento<0){
+                            desarmado = true;
+                        }
+                       break;
+                    case "FINTAR":
+                        danio = (40*modArma)+(modArma*4*aE)+5;
+                       break;
+                    case "ARREMETER":
+                        danio = (modArmaEn*5*aEEn)-25;
+                        rendimiento -= danio;
+                        if (rendimiento<0){
+                            desarmado = true;
+                            rendimiento = 0;
+                        }
+                        break;
+                    case "CURARSE":
+                        
+                        
+                        break;
+                    default:
+                        break;
+               }
+               break;
+           case "FINTAR":
+               switch (accionEn){
+                   case "ATACAR":
+                        danio = (modArmaEn*2*aE)+10;
+                        danioEn = (20*modArmaEn)+(modArmaEn*2*aEEn);
                         rendimiento -= danio;
                         if (rendimiento<0){
                             desarmado = true;
@@ -112,11 +162,6 @@ public class Garden extends javax.swing.JFrame {
                         break;
                     default:
                         break;
-               }
-               break;
-           case "FINTAR":
-               switch (accionEne){
-                   
                    
                    
                    
@@ -328,6 +373,15 @@ public class Garden extends javax.swing.JFrame {
     private int vida;
     private int estamina;
     private int esfuerzo;
+   
+    private int minimoEn;
+    private String accionEn;
+    private String armaEn;
+    private String nombreEn;
+    private String turnoEn;
+    private int vidaEn;
+    private int estaminaEn;
+    private int esfuerzoEn;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
