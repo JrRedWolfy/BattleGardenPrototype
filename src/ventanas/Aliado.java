@@ -5,7 +5,8 @@
  */
 package ventanas;
 
-import Objetos.Player;
+import control.Controlador;
+import objetos.Player;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ public class Aliado extends javax.swing.JFrame {
     public Aliado() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.playSet = new Controlador(null, null, 0, null);
     }
     
     
@@ -236,10 +238,11 @@ public class Aliado extends javax.swing.JFrame {
             nombre = "???";
         }
         
-        Player leon = new Player("", "CURARSE", "ESPADA", 100, 100, 0, 0, "");
-        Player lobo = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo, "");
+        playSet.setAlly(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
         
-        Enemigo leo = new Enemigo(lobo, leon, turno, mDialogo);
+  
+        
+        Pantalla leo = new Pantalla(playSet);
         leo.setVisible(true);
         this.dispose();
         
@@ -341,8 +344,7 @@ public class Aliado extends javax.swing.JFrame {
     
     
     
-    
-    private javax.swing.DefaultListModel<String> mDialogo;
+    private Controlador playSet;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBoxAccion;

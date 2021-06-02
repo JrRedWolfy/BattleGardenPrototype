@@ -5,44 +5,46 @@
  */
 package ventanas;
 
-import Objetos.Player;
+import control.Controlador;
+import objetos.Player;
 
 /**
  *
  * @author RedCa
  */
-public class Garden extends javax.swing.JFrame {
+public class VistaLobo extends javax.swing.JFrame {
 
     /**
      * Creates new form Garden
      */
-    public Garden() {
+    public VistaLobo() {
         initComponents();
     }
     
-     public Garden(Player leon, Player lobo, String turno, javax.swing.DefaultListModel mDialogo) {
+     public VistaLobo(Controlador c) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.playSet = c;
         
-        this.lobo=lobo;
-        this.leon=leon;
+        Player lobo = playSet.getAlly();
+        Player leon = playSet.getEnemy();
         
         // Atributos Aliado
-        accion = lobo.getAccion();
-        arma = lobo.getArma();
-        esfuerzo = lobo.getEsfuerzo();
-        estamina = lobo.getEstamina();
-        vida = lobo.getVida();
-        minimo = lobo.getMinimo();
+        String accion = lobo.getAccion();
+        String arma = lobo.getArma();
+        int esfuerzo = lobo.getEsfuerzo();
+        int estamina = lobo.getEstamina();
+        int vida = lobo.getVida();
+        int minimo = lobo.getMinimo();
         int rendimiento = estamina - esfuerzo;
         
         // Atributos Enemigo
-        accionEn = leon.getAccion();
-        esfuerzoEn = leon.getEsfuerzo();
-        estaminaEn = leon.getEstamina();
-        vidaEn = leon.getVida();
-        minimoEn = leon.getMinimo();
-        armaEn = leon.getArma();
+        String accionEn = leon.getAccion();
+        int esfuerzoEn = leon.getEsfuerzo();
+        int estaminaEn = leon.getEstamina();
+        int vidaEn = leon.getVida();
+        int minimoEn = leon.getMinimo();
+        String armaEn = leon.getArma();
         int rendimientoEn = estaminaEn - esfuerzoEn;
         
         
@@ -222,7 +224,6 @@ public class Garden extends javax.swing.JFrame {
         jTextFieldArmaEnemy = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jProgressBarVida.setBackground(new java.awt.Color(204, 0, 0));
         jProgressBarVida.setForeground(new java.awt.Color(204, 0, 0));
@@ -343,45 +344,41 @@ public class Garden extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Garden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaLobo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Garden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaLobo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Garden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaLobo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Garden.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaLobo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Garden().setVisible(true);
+                new VistaLobo().setVisible(true);
             }
         });
     }
 
-    private Player lobo;
-    private Player leon;
-    
-    private int minimo;
-    private String accion;
-    private String arma;
-    private String nombre;
-    private String turno;
-    private int vida;
-    private int estamina;
-    private int esfuerzo;
-   
-    private int minimoEn;
-    private String accionEn;
-    private String armaEn;
-    private String nombreEn;
-    private String turnoEn;
-    private int vidaEn;
-    private int estaminaEn;
-    private int esfuerzoEn;
+    Controlador playSet;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

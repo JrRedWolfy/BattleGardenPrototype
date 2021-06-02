@@ -5,7 +5,8 @@
  */
 package ventanas;
 
-import Objetos.Player;
+import control.Controlador;
+import objetos.Player;
 
 /**
  *
@@ -20,14 +21,10 @@ public class Enemigo extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Enemigo(Player lobo, Player leon, String turno, javax.swing.DefaultListModel mDialogo) {
+    public Enemigo(Controlador c) {
         initComponents();
         this.setLocationRelativeTo(null);
-        
-        turnoB = turno;
-        jugador = leon;
-        mDialog = mDialogo;
-        
+        this.playSet = c;  
     }
 
     /**
@@ -224,9 +221,9 @@ public class Enemigo extends javax.swing.JFrame {
             nombre = "???";
         }
         
-        Player leon = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo, "");
+        playSet.setEnemy(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
         
-        Garden zone = new Garden(leon, jugador, turnoB, mDialog);
+        VistaLobo zone = new VistaLobo(playSet);
         zone.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
@@ -267,10 +264,8 @@ public class Enemigo extends javax.swing.JFrame {
         });
     }
 
-    private String turnoB;
-    private javax.swing.DefaultListModel mDialog;
-    private Player jugador;
-    
+
+    private Controlador playSet;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBoxAccionB;

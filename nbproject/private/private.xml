@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/alumnodaw/NetBeansProjects/BattleGardenPrototype/src/ventanas/VistaLeon.java</file>
+            <file>file:/home/alumnodaw/NetBeansProjects/BattleGardenPrototype/src/ventanas/Pantalla.java</file>
+            <file>file:/home/alumnodaw/NetBeansProjects/BattleGardenPrototype/src/objetos/Player.java</file>
+            <file>file:/home/alumnodaw/NetBeansProjects/BattleGardenPrototype/src/control/Controlador.java</file>
+            <file>file:/home/alumnodaw/NetBeansProjects/BattleGardenPrototype/src/ventanas/Enemigo.java</file>
+            <file>file:/home/alumnodaw/NetBeansProjects/BattleGardenPrototype/src/ventanas/VistaLobo.java</file>
+            <file>file:/home/alumnodaw/NetBeansProjects/BattleGardenPrototype/src/ventanas/Aliado.java</file>
+            <file>file:/home/alumnodaw/NetBeansProjects/BattleGardenPrototype/src/ventanas/Separador.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Objetos;
+package objetos;
 
 /**
  *
@@ -25,9 +25,8 @@ public class Player {
     
     private int esfuerzo;
     
-    private String linea;
 
-    public Player(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo, String linea) {
+    public Player(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo) {
         this.nombre = "";
         this.accion = "";
         this.arma = "";
@@ -35,7 +34,6 @@ public class Player {
         this.estamina = 100;
         this.minimo = 0;
         this.esfuerzo = 0;
-        this.linea = "";
     }
 
     public String getNombre() {
@@ -87,16 +85,9 @@ public class Player {
         this.esfuerzo = esfuerzo;
     }
 
-    public String getLinea() {
-        return linea;
-    }
-    public void setLinea(String linea) {
-        this.linea = linea;
-    }
-
     @Override
     public String toString() {
-        return "Player{" + "nombre=" + nombre + ", accion=" + accion + ", arma=" + arma + ", vida=" + vida + ", estamina=" + estamina + ", minimo=" + minimo + ", esfuerzo=" + esfuerzo + ", linea=" + linea + '}';
+        return "Player{" + "nombre=" + nombre + ", accion=" + accion + ", arma=" + arma + ", vida=" + vida + ", estamina=" + estamina + ", minimo=" + minimo + ", esfuerzo=" + esfuerzo + '}';
     }
     
     
