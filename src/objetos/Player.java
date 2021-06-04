@@ -27,13 +27,13 @@ public class Player {
     
 
     public Player(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo) {
-        this.nombre = "";
-        this.accion = "";
-        this.arma = "";
-        this.vida = 100;
-        this.estamina = 100;
-        this.minimo = 0;
-        this.esfuerzo = 0;
+        this.nombre = nombre;
+        this.accion = accion;
+        this.arma = arma;
+        this.vida = vida;
+        this.estamina = estamina;
+        this.minimo = minimo;
+        this.esfuerzo = esfuerzo;
     }
 
     public String getNombre() {

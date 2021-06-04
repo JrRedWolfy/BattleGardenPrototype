@@ -9,6 +9,7 @@ import control.Controlador;
 import objetos.Player;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -248,7 +249,7 @@ public class Aliado extends javax.swing.JFrame {
         }
         
         playSet.introducirLobo(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
-        
+       
         JOptionPane.showInputDialog(playSet.toString());
         
         
