@@ -33,19 +33,15 @@ public class VistaLobo extends javax.swing.JFrame {
         String accion = lobo.getAccion();
         String arma = lobo.getArma();
         int esfuerzo = lobo.getEsfuerzo();
-        int estamina = lobo.getEstamina();
         int vida = lobo.getVida();
         int minimo = lobo.getMinimo();
-        int rendimiento = estamina - esfuerzo;
+        int estamina = lobo.getEstamina()-esfuerzo-minimo;
         
         // Atributos Enemigo
         String accionEn = leon.getAccion();
         int esfuerzoEn = leon.getEsfuerzo();
-        int estaminaEn = leon.getEstamina();
-        int vidaEn = leon.getVida();
         int minimoEn = leon.getMinimo();
         String armaEn = leon.getArma();
-        int rendimientoEn = estaminaEn - esfuerzoEn;
         
         
         
@@ -59,29 +55,19 @@ public class VistaLobo extends javax.swing.JFrame {
         boolean desarmado = false;
         
        // Calcular Vida Aliada
-       double danio = 0;
-       double cura = 0;
-       double modArma;
-       double aE = (esfuerzo/5);
+       float dano = 0;
+       float cura = 0;
        
        //Calcular Vida Enemiga
-       double danioEn = 0;
-       double curaEn = 0;
-       double modArmaEn;
-       double aEEn = (esfuerzoEn/5);
+       float modArmaEn;
+       float aEEn = (esfuerzoEn/5);
        //aE = Esfuerzo Aplicado, mas Esfuerzo en el ataque, mas daño. Por cada 5 de Esfuerzo, aE += 1
        
        
        if (armaEn == "ESPADA"){
            modArmaEn = 1;
        } else {
-           modArmaEn = 0.5;
-       }
-       
-       if (arma == "ESPADA"){
-           modArma = 1;
-       } else {
-           modArma = 0.5;
+           modArmaEn = (float) 0.5;
        }
        
         
@@ -89,49 +75,31 @@ public class VistaLobo extends javax.swing.JFrame {
            case "CURARSE":
                switch (accionEn){
                     case "FINTAR":
-                        danio = (40*modArmaEn)+(modArmaEn*4*aEEn); 
-                        // daño base(Finta)*arma + Esfuerzo
-                        cura = 25;
-                        rendimiento += 25;
+                        dano = (30*modArmaEn)+(aEEn*3);
                         break;
                     case "ARREMETER":
-                        danio = (50*modArmaEn)+(modArmaEn*5*aEEn)+20;
-                        cura = 25;
-                        rendimiento += 25;
+                        dano = (50*modArmaEn)+(aEEn*5);
                         break;
                     case "ATACAR":
-                        danio = (20*modArmaEn)+(modArmaEn*2*aEEn);
-                        cura = 25;
-                        rendimiento += 25;
+                        dano = (20*modArmaEn)+(aEEn*2);
+                        cura = 20;
+                        estamina =+ 20;
                         break;
                     default:
-                        vida += 50;
-                        rendimiento += 50;
+                       cura = 40;
+                       estamina =+ 40;
                         break;
                     }
                break;
            case "BLOQUEAR":
                switch (accionEn){
                     case "ATACAR":
-                        danio = (modArmaEn*2*aEEn)-10;
-                        rendimiento -= danio;
-                        if (rendimiento<0){
-                            desarmado = true;
-                        }
+                        
                        break;
                     case "FINTAR":
-                        danio = (40*modArma)+(modArma*4*aE)+5;
+                        dano = (30*modArmaEn)+(aEEn*3)+5;
                        break;
                     case "ARREMETER":
-                        danio = (modArmaEn*5*aEEn)-25;
-                        rendimiento -= danio;
-                        if (rendimiento<0){
-                            desarmado = true;
-                            rendimiento = 0;
-                        }
-                        break;
-                    case "CURARSE":
-                        
                         
                         break;
                     default:
@@ -141,57 +109,78 @@ public class VistaLobo extends javax.swing.JFrame {
            case "FINTAR":
                switch (accionEn){
                    case "ATACAR":
-                        danio = (modArmaEn*2*aE)+10;
-                        danioEn = (20*modArmaEn)+(modArmaEn*2*aEEn);
-                        rendimiento -= danio;
-                        if (rendimiento<0){
-                            desarmado = true;
-                        }
+                       dano = (20*modArmaEn)+(aEEn*3)+15;
                        break;
                     case "FINTAR":
-                        danio = (40*modArma)+(modArma*4*aE)+5;
+                       dano = (30*modArmaEn)+(aEEn*3);
                        break;
                     case "ARREMETER":
-                        danio = (modArma*5*aE)-25;
-                        rendimiento -= danio;
-                        if (rendimiento<0){
-                            desarmado = true;
-                        }
-                        break;
-                    case "CURARSE":
-                        
-                        
+                        dano = (20*modArmaEn)+(aEEn*3)+25;
                         break;
                     default:
                         break;
-                   
-                   
-                   
                }
                
                
                break;
            case "RETROCEDER":
-               
+               switch (accionEn){
+                   case "ATACAR":
+                       
+                       break;
+                    case "FINTAR":
+                       
+                       break;
+                    case "ARREMETER":
+                        dano = (50*modArmaEn)+(aEEn*5)+5;
+                        break;
+                    default:
+                        break;
+               }
                
                
                break;
            case "ARREMETER":
-               
+               switch (accionEn){
+                   case "ATACAR":
+                       dano = (50*modArmaEn)+(aEEn*5)-25;
+                       break;
+                    case "FINTAR":
+                       dano = (50*modArmaEn)+(aEEn*5)+5;
+                       break;
+                    case "ARREMETER":
+                       dano = (50*modArmaEn)+(aEEn*5)-10;
+                       break;
+                    default:
+                        break;
+               }
                
                
                break;
            case "ATACAR":
-               
+               switch (accionEn){
+                   case "ATACAR":
+                       dano = (20*modArmaEn)+(aEEn*2)-5;
+                       break;
+                    case "FINTAR":
+                       dano = (30*modArmaEn)+(aEEn*3)-15;
+                       break;
+                    case "ARREMETER":
+                        
+                        break;
+                    default:
+                        break;
+               }
                
                
                break;
         }
-        vida -= danio;
+        vida =- Math.round(dano);
         if (vida < 0){
             vida = 0;
         }
         jProgressBarVida.setValue(vida);
+        jProgressBarEstamina.setValue(estamina);
         
         // Pendiente a añadir en un futuro: Armas [Lanza](NO Bloquea, Ataque golpea a Retroceder), [Ballesta](NO Bloquea, Atacar golpea a Retroceder, Traspasa Bloqueos de Armas)||
         // Mini-Eventos de Garden|| Estados como [Herido](Cuesta mas energia algunas acciones)
@@ -236,6 +225,11 @@ public class VistaLobo extends javax.swing.JFrame {
         jLabel2.setText("VIDA:");
 
         jButton1.setText("NEXT TURN --->");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jLabel5.setText("DECIR:");
 
@@ -326,6 +320,23 @@ public class VistaLobo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        int actual = playSet.getTurno();
+        actual =+ 1;
+        
+        playSet.setTurno(actual);
+        
+        String dialog = jTextField1.getText();
+        String name = jLabelNombre.getText();
+        
+        playSet.crearModelo(name, dialog);
+        
+        Aliado lobo = new Aliado(playSet);
+        lobo.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

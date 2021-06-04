@@ -33,15 +33,15 @@ public class Controlador {
     public Player getAlly() {
         return ally;
     }
-    public void setAlly(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo) {
-        this.ally = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+    public void setAlly(Player ally) {
+        this.ally = ally;
     }
 
     public Player getEnemy() {
         return enemy;
     }
-    public void setEnemy(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo) {
-        this.enemy = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+    public void setEnemy(Player enemy) {
+        this.enemy = enemy;
     }
 
     public int getTurno() {
@@ -62,6 +62,28 @@ public class Controlador {
     public String toString() {
         return "Controlador{" + "ally=" + ally + ", enemy=" + enemy + ", turno=" + turno + ", mDialogo=" + mDialogo + '}';
     }
+    
+    
+    public void crearModelo(String name, String dialog){
+        
+        String text = name + ": " + dialog;
+        mDialogo.addElement(text);
+    }
+    
+    public void introducirLobo(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo){
+        ally = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+    }
+    
+    public void introducirLeon(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo){
+        enemy = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+    }
+    
+    
+    
+    // traer aqui las estadisticas ayuden a guardarlas?
+    
+    
+    
     
     
     

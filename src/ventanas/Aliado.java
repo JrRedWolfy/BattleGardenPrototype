@@ -9,6 +9,7 @@ import control.Controlador;
 import objetos.Player;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,7 +25,15 @@ public class Aliado extends javax.swing.JFrame {
     public Aliado() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.playSet = new Controlador(null, null, 0, null);
+        DefaultListModel mDialogo = new DefaultListModel<String>();
+        this.playSet = new Controlador(null, null, 1, mDialogo);
+    }
+    
+    public Aliado(Controlador c) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.playSet = c;
+        jListDialogo.setModel(playSet.getmDialogo());
     }
     
     
@@ -238,9 +247,10 @@ public class Aliado extends javax.swing.JFrame {
             nombre = "???";
         }
         
-        playSet.setAlly(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+        playSet.introducirLobo(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
         
-  
+        JOptionPane.showInputDialog(playSet.toString());
+        
         
         Pantalla leo = new Pantalla(playSet);
         leo.setVisible(true);

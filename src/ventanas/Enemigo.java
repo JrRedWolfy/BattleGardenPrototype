@@ -24,7 +24,8 @@ public class Enemigo extends javax.swing.JFrame {
     public Enemigo(Controlador c) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.playSet = c;  
+        this.playSet = c;
+        jListDialogoB.setModel(playSet.getmDialogo());
     }
 
     /**
@@ -221,9 +222,9 @@ public class Enemigo extends javax.swing.JFrame {
             nombre = "???";
         }
         
-        playSet.setEnemy(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+        playSet.introducirLeon(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
         
-        VistaLobo zone = new VistaLobo(playSet);
+        VistaLeon zone = new VistaLeon(playSet);
         zone.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked

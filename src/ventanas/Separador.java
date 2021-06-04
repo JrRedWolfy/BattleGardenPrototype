@@ -5,6 +5,8 @@
  */
 package ventanas;
 
+import control.Controlador;
+
 /**
  *
  * @author alumnodaw
@@ -16,6 +18,12 @@ public class Separador extends javax.swing.JFrame {
      */
     public Separador() {
         initComponents();
+    }
+    
+    public Separador(Controlador c) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.playSet = c; 
     }
 
     /**
@@ -78,7 +86,9 @@ public class Separador extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         
-        
+        VistaLobo lobo = new VistaLobo(playSet);
+        lobo.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -117,6 +127,8 @@ public class Separador extends javax.swing.JFrame {
             }
         });
     }
+    
+    private Controlador playSet;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
