@@ -6,6 +6,7 @@
 package ventanas;
 
 import control.Controlador;
+import javax.swing.ImageIcon;
 import javax.swing.ListModel;
 import objetos.Player;
 
@@ -33,7 +34,6 @@ public class VistaLeon extends javax.swing.JFrame {
         // Atributos Enemigo
         String accion = leon.getAccion();
         int esfuerzo = leon.getEsfuerzo();
-        int vida = leon.getVida();
         int minimo = leon.getMinimo();
         String arma = leon.getArma();
         int estamina = leon.getEstamina()-esfuerzo-minimo;
@@ -44,11 +44,11 @@ public class VistaLeon extends javax.swing.JFrame {
         int esfuerzoEn = lobo.getEsfuerzo();
         int minimoEn = lobo.getMinimo();
         
-        
-        
-        jTextFieldActAlly.setText(accion);
-        jTextFieldArmaAlly.setText(arma);
-        jLabelNombre.setText(lobo.getNombre() + ":");
+        ImageIcon icon = new ImageIcon("imagenes/Enemigo.jpg");
+        jLabelLeon.setIcon(icon);
+        ImageIcon icones = new ImageIcon("imagenes/YOp.jpg");
+        jLabelLobo.setIcon(icones);
+        jLabelNombre.setText(leon.getNombre() + ":");
         
         jTextFieldActEnemy.setText(accionEn);
         jTextFieldArmaEnemy.setText(armaEn);
@@ -176,13 +176,19 @@ public class VistaLeon extends javax.swing.JFrame {
                
                break;
         }
-       
-        vida =- Math.round(dano) + Math.round(cura);
+        int vida = leon.getVida();
+        vida = vida - Math.round(dano) + Math.round(cura);
         if (vida < 0){
             vida = 0;
+        }else{
+            if (vida > 100){
+                vida = 100;
+            }
         }
         jProgressBarVida.setValue(vida);
         jProgressBarEstamina.setValue(estamina);
+        String nombre = leon.getNombre();
+        playSet.setEnemy(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
         
         // Pendiente a añadir en un futuro: Armas [Lanza](NO Bloquea, Ataque golpea a Retroceder), [Ballesta](NO Bloquea, Atacar golpea a Retroceder, Traspasa Bloqueos de Armas)||
         // Mini-Eventos de Garden|| Estados como [Herido](Cuesta mas energia algunas acciones)
@@ -203,15 +209,13 @@ public class VistaLeon extends javax.swing.JFrame {
         jProgressBarEstamina = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelLeon = new javax.swing.JLabel();
+        jLabelLobo = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldActEnemy = new javax.swing.JTextField();
-        jTextFieldActAlly = new javax.swing.JTextField();
         jLabelNombre = new javax.swing.JLabel();
-        jTextFieldArmaAlly = new javax.swing.JTextField();
         jTextFieldArmaEnemy = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -226,6 +230,10 @@ public class VistaLeon extends javax.swing.JFrame {
 
         jLabel2.setText("VIDA:");
 
+        jLabelLeon.setIcon(new javax.swing.ImageIcon("C:\\Users\\RedCa\\Desktop\\Netbean\\BattleGardenPrototype\\src\\imagenes\\Enemigo.jpg")); // NOI18N
+
+        jLabelLobo.setIcon(new javax.swing.ImageIcon("C:\\Users\\RedCa\\Desktop\\Netbean\\BattleGardenPrototype\\src\\imagenes\\YOp.jpg")); // NOI18N
+
         jButton1.setText("NEXT TURN --->");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -237,10 +245,6 @@ public class VistaLeon extends javax.swing.JFrame {
 
         jTextFieldActEnemy.setEditable(false);
 
-        jTextFieldActAlly.setEditable(false);
-
-        jTextFieldArmaAlly.setEditable(false);
-
         jTextFieldArmaEnemy.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,23 +255,26 @@ public class VistaLeon extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextFieldActAlly)
-                            .addComponent(jTextFieldArmaAlly, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(jProgressBarVida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jProgressBarEstamina, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldActEnemy)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jProgressBarVida, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelLeon, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jProgressBarEstamina, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelLobo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldArmaEnemy)))
+                            .addComponent(jTextFieldArmaEnemy)
+                            .addComponent(jTextFieldActEnemy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -277,7 +284,7 @@ public class VistaLeon extends javax.swing.JFrame {
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 23, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -292,23 +299,14 @@ public class VistaLeon extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(86, 86, 86)
-                                .addComponent(jTextFieldActAlly, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldArmaAlly, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(jTextFieldActEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldArmaEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldActEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldArmaEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(109, 109, 109))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelLobo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelLeon, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -410,16 +408,14 @@ public class VistaLeon extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelLeon;
+    private javax.swing.JLabel jLabelLobo;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JProgressBar jProgressBarEstamina;
     private javax.swing.JProgressBar jProgressBarVida;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextFieldActAlly;
     private javax.swing.JTextField jTextFieldActEnemy;
-    private javax.swing.JTextField jTextFieldArmaAlly;
     private javax.swing.JTextField jTextFieldArmaEnemy;
     // End of variables declaration//GEN-END:variables
 }

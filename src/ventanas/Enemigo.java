@@ -26,6 +26,10 @@ public class Enemigo extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.playSet = c;
         jListDialogoB.setModel(playSet.getmDialogo());
+        
+        jTextFieldNombreB.setText(playSet.getEnemy().getNombre());
+        jProgressBarVidaB.setValue(playSet.getEnemy().getVida());
+        jProgressBarEstaminaB.setValue(playSet.getEnemy().getEstamina());
     }
 
     /**
@@ -61,6 +65,8 @@ public class Enemigo extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jListDialogoB);
 
+        jTextFieldNombreB.setEditable(false);
+
         jProgressBarVidaB.setBackground(new java.awt.Color(204, 0, 0));
         jProgressBarVidaB.setForeground(new java.awt.Color(204, 0, 0));
         jProgressBarVidaB.setValue(100);
@@ -87,6 +93,11 @@ public class Enemigo extends javax.swing.JFrame {
         jTextFieldEsfuerzoB.setText("0");
 
         jComboBoxAccionB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CURARSE", "BLOQUEAR", "FINTAR", "RETROCEDER", "ARREMETER", "ATACAR" }));
+        jComboBoxAccionB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAccionBActionPerformed(evt);
+            }
+        });
 
         jComboBoxObjetoB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESPADA", "ESCUDO" }));
 
@@ -127,7 +138,7 @@ public class Enemigo extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldNombreB, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldNombreB)
                                             .addComponent(jProgressBarVidaB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jProgressBarEstaminaB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -212,7 +223,6 @@ public class Enemigo extends javax.swing.JFrame {
         arma = jComboBoxObjetoB.getSelectedItem().toString();
         
         nombre = jTextFieldNombreB.getText();
-        turno = jLabelNumTurno.getText();
         vida = jProgressBarVidaB.getValue();
         minimo = Integer.parseInt(jTextFieldMinimoB.getText());
         estamina = jProgressBarEstaminaB.getValue();
@@ -222,12 +232,49 @@ public class Enemigo extends javax.swing.JFrame {
             nombre = "???";
         }
         
-        playSet.introducirLeon(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+        playSet.setEnemy(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
         
         VistaLeon zone = new VistaLeon(playSet);
         zone.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jComboBoxAccionBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAccionBActionPerformed
+        String opc = jComboBoxAccionB.getSelectedItem().toString();
+        
+        switch (opc){
+            case "CURARSE":
+                jTextFieldMinimoB.setText("0");
+                jTextFieldEsfuerzoB.setText("0");
+                jTextFieldEsfuerzoB.setEditable(false);
+                break;
+            case "BLOQUEAR":
+                jTextFieldMinimoB.setText("5");
+                jTextFieldEsfuerzoB.setText("0");
+                jTextFieldEsfuerzoB.setEditable(false);
+                break;
+            case "FINTAR":
+                jTextFieldMinimoB.setText("15");
+                 jTextFieldEsfuerzoB.setText("0");
+                jTextFieldEsfuerzoB.setEditable(true);
+                break;
+            case "RETROCEDER":
+                jTextFieldMinimoB.setText("10");
+                jTextFieldEsfuerzoB.setText("0");
+                jTextFieldEsfuerzoB.setEditable(false);
+                break;
+            case "ARREMETER":
+                jTextFieldMinimoB.setText("25");
+                jTextFieldEsfuerzoB.setText("0");
+                jTextFieldEsfuerzoB.setEditable(true);
+                break;
+            case "ATACAR":
+                jTextFieldMinimoB.setText("10");
+                jTextFieldEsfuerzoB.setText("0");
+                jTextFieldEsfuerzoB.setEditable(true);
+                break;
+        }
+    }//GEN-LAST:event_jComboBoxAccionBActionPerformed
 
     /**
      * @param args the command line arguments

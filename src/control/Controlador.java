@@ -33,15 +33,15 @@ public class Controlador {
     public Player getAlly() {
         return ally;
     }
-    public void setAlly(Player ally) {
-        this.ally = ally;
+    public void setAlly(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo) {
+        ally = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
     }
 
     public Player getEnemy() {
         return enemy;
     }
-    public void setEnemy(Player enemy) {
-        this.enemy = enemy;
+    public void setEnemy(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo) {
+        this.enemy = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
     }
 
     public int getTurno() {
@@ -66,23 +66,39 @@ public class Controlador {
     
     public void crearModelo(String name, String dialog){
         
-        String text = name + ": " + dialog;
+        String text = name + " " + dialog;
         mDialogo.addElement(text);
     }
     
-    public void introducirLobo(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo){
-        ally = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+    
+    
+    public boolean comprobarEstado(){
+        boolean yes = false;
+        
+        if (ally.getVida()==0){
+            yes = true;
+        }
+        if (enemy.getVida()==0){
+            yes = true;
+        }
+        
+        return yes;
     }
     
-    public void introducirLeon(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo){
-        enemy = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+    public String quienGana(){
+        String ganador ="";
+        if ((ally.getVida()==0)&&(enemy.getVida()==0)){
+            ganador = "EMPATE";
+        } else {
+            if (ally.getVida()== 0){
+                ganador = "YOU WIN: " + enemy.getNombre();
+            }else{
+                ganador = "YOU WIN: " + ally.getNombre();
+            }
+        }
+        
+        return ganador;
     }
-    
-    
-    
-    // traer aqui las estadisticas ayuden a guardarlas?
-    
-    
     
     
     

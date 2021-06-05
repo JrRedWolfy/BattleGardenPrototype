@@ -25,9 +25,6 @@ public class Aliado extends javax.swing.JFrame {
      */
     public Aliado() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        DefaultListModel mDialogo = new DefaultListModel<String>();
-        this.playSet = new Controlador(null, null, 1, mDialogo);
     }
     
     public Aliado(Controlador c) {
@@ -35,6 +32,10 @@ public class Aliado extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.playSet = c;
         jListDialogo.setModel(playSet.getmDialogo());
+        
+        jTextFieldNombre.setText(playSet.getAlly().getNombre());
+        jProgressBarVida.setValue(playSet.getAlly().getVida());
+        jProgressBarEstamina.setValue(playSet.getAlly().getEstamina());
     }
     
     
@@ -65,7 +66,7 @@ public class Aliado extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jProgressBarVida = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
-        jProgressEstamina = new javax.swing.JProgressBar();
+        jProgressBarEstamina = new javax.swing.JProgressBar();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldMinimo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -93,6 +94,8 @@ public class Aliado extends javax.swing.JFrame {
 
         jLabelNombre.setText("NOMBRE:");
 
+        jTextFieldNombre.setEditable(false);
+
         jLabel1.setText("VIDA:");
 
         jProgressBarVida.setBackground(new java.awt.Color(204, 0, 0));
@@ -102,10 +105,10 @@ public class Aliado extends javax.swing.JFrame {
 
         jLabel2.setText("ESTAMINA:");
 
-        jProgressEstamina.setBackground(new java.awt.Color(51, 204, 255));
-        jProgressEstamina.setForeground(new java.awt.Color(51, 204, 255));
-        jProgressEstamina.setValue(100);
-        jProgressEstamina.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jProgressBarEstamina.setBackground(new java.awt.Color(51, 204, 255));
+        jProgressBarEstamina.setForeground(new java.awt.Color(51, 204, 255));
+        jProgressBarEstamina.setValue(100);
+        jProgressBarEstamina.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel3.setText("RENDIMIENTO:");
 
@@ -161,8 +164,8 @@ public class Aliado extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jTextFieldNombre)
-                                            .addComponent(jProgressBarVida, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                            .addComponent(jProgressEstamina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(jProgressBarVida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jProgressBarEstamina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,7 +206,7 @@ public class Aliado extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jProgressEstamina, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jProgressBarEstamina, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,20 +241,16 @@ public class Aliado extends javax.swing.JFrame {
         arma = jComboBoxObjeto.getSelectedItem().toString();
         
         nombre = jTextFieldNombre.getText();
-        turno = jLabelTurnoNumber.getText();
         vida = jProgressBarVida.getValue();
         minimo = Integer.parseInt(jTextFieldMinimo.getText());
-        estamina = jProgressEstamina.getValue();
+        estamina = jProgressBarEstamina.getValue();
         esfuerzo = Integer.parseInt(jTextFieldEsfuerzo.getText());
         
         if (nombre.equals("")){
             nombre = "???";
         }
         
-        playSet.introducirLobo(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
-       
-        JOptionPane.showInputDialog(playSet.toString());
-        
+        playSet.setAlly(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
         
         Pantalla leo = new Pantalla(playSet);
         leo.setVisible(true);
@@ -264,7 +263,7 @@ public class Aliado extends javax.swing.JFrame {
         
         int esfuerzo = Integer.parseInt(jTextFieldEsfuerzo.getText());
         int minimo = Integer.parseInt(jTextFieldMinimo.getText());
-        int stamina = jProgressEstamina.getValue()-minimo;
+        int stamina = jProgressBarEstamina.getValue()-minimo;
         
         
         if (esfuerzo%5!=0){
@@ -370,8 +369,8 @@ public class Aliado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTurno;
     private javax.swing.JLabel jLabelTurnoNumber;
     private javax.swing.JList<String> jListDialogo;
+    private javax.swing.JProgressBar jProgressBarEstamina;
     private javax.swing.JProgressBar jProgressBarVida;
-    private javax.swing.JProgressBar jProgressEstamina;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldEsfuerzo;
     private javax.swing.JTextField jTextFieldMinimo;
