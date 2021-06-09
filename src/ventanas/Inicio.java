@@ -7,6 +7,7 @@ package ventanas;
 
 import control.Controlador;
 import javax.swing.DefaultListModel;
+import objetos.Arma;
 import objetos.Player;
 
 /**
@@ -21,6 +22,11 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //                    String nombre, boolean bloquear, boolean bloqueoMenor, boolean ligera, boolean alcance, boolean pesada, boolean adaptable, boolean fina, boolean skilled, boolean sutil, boolean inadecuada, int vida, boolean desarmado
+        Arma escudo = new Arma("Escudo", true, false, false, false, false, true, false, true, true, true, 100, false);
+        Arma espada = new Arma("Escudo", true, false, false, false, false, true, false, true, true, true, 100, false);
+        Arma daga = new Arma("Escudo", true, false, false, false, false, true, false, true, true, true, 100, false);
+        Arma arco = new Arma("Escudo", true, false, false, false, false, true, false, true, true, true, 100, false);
     }
 
     /**
@@ -35,6 +41,14 @@ public class Inicio extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTextFieldPlayer1 = new javax.swing.JTextField();
         jTextFieldPlayer2 = new javax.swing.JTextField();
+        jComboBoxArma2 = new javax.swing.JComboBox<>();
+        jComboBoxArma1 = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaProp2 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaProp1 = new javax.swing.JTextArea();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -64,6 +78,34 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxArma2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jComboBoxArma2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige tu arma:", "Espada", "Lanza", "Hacha", "Daga", "Arco" }));
+        jComboBoxArma2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxArma2ActionPerformed(evt);
+            }
+        });
+
+        jComboBoxArma1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jComboBoxArma1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige tu arma:", "Espada", "Lanza", "Hacha", "Daga", "Arco" }));
+        jComboBoxArma1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxArma1ActionPerformed(evt);
+            }
+        });
+
+        jTextAreaProp2.setColumns(20);
+        jTextAreaProp2.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaProp2);
+
+        jTextAreaProp1.setColumns(20);
+        jTextAreaProp1.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaProp1);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,11 +113,19 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldPlayer1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldPlayer1)
+                            .addComponent(jComboBoxArma1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldPlayer2)
+                            .addComponent(jComboBoxArma2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -84,10 +134,22 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldPlayer1)
                     .addComponent(jTextFieldPlayer2))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxArma2)
+                    .addComponent(jComboBoxArma1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                    .addComponent(jComboBox2))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,6 +178,25 @@ public class Inicio extends javax.swing.JFrame {
     private void jTextFieldPlayer2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayer2MouseClicked
         jTextFieldPlayer2.setText("");
     }//GEN-LAST:event_jTextFieldPlayer2MouseClicked
+
+    private void jComboBoxArma1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxArma1ActionPerformed
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jComboBoxArma1ActionPerformed
+
+    private void jComboBoxArma2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxArma2ActionPerformed
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jComboBoxArma2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +237,14 @@ public class Inicio extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBoxArma1;
+    private javax.swing.JComboBox<String> jComboBoxArma2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextAreaProp1;
+    private javax.swing.JTextArea jTextAreaProp2;
     private javax.swing.JTextField jTextFieldPlayer1;
     private javax.swing.JTextField jTextFieldPlayer2;
     // End of variables declaration//GEN-END:variables
