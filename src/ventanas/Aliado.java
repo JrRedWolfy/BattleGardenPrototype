@@ -10,9 +10,11 @@ import objetos.Player;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import objetos.Arma;
 
 /**
  *
@@ -36,6 +38,12 @@ public class Aliado extends javax.swing.JFrame {
         jTextFieldNombre.setText(playSet.getAlly().getNombre());
         jProgressBarVida.setValue(playSet.getAlly().getVida());
         jProgressBarEstamina.setValue(playSet.getAlly().getEstamina());
+        mArma = new DefaultComboBoxModel();
+        for(Arma s: playSet.getAlly().getvEquipo()){
+            mArma.addElement(s.getNombre());
+        }
+        jComboBoxObjeto.setModel(mArma);
+        
     }
     
     
@@ -136,7 +144,11 @@ public class Aliado extends javax.swing.JFrame {
 
         jLabel6.setText("OBJETO");
 
-        jComboBoxObjeto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESPADA", "ESCUDO" }));
+        jComboBoxObjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxObjetoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,23 +246,16 @@ public class Aliado extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         
-        String nombre, turno, accion, arma;
-        int vida, estamina, esfuerzo, minimo;
+        String turno;
         
-        accion = jComboBoxAccion.getSelectedItem().toString();
-        arma = jComboBoxObjeto.getSelectedItem().toString();
+      
         
-        nombre = jTextFieldNombre.getText();
-        vida = jProgressBarVida.getValue();
-        minimo = Integer.parseInt(jTextFieldMinimo.getText());
-        estamina = jProgressBarEstamina.getValue();
-        esfuerzo = Integer.parseInt(jTextFieldEsfuerzo.getText());
-        
-        if (nombre.equals("")){
-            nombre = "???";
-        }
-        
-        playSet.setAlly(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+        playSet.getAlly().setAccion(jComboBoxAccion.getSelectedItem().toString());
+        playSet.getAlly().setArma(jComboBoxObjeto.getSelectedItem().toString());
+        playSet.getAlly().setEstamina(jProgressBarEstamina.getValue());
+        playSet.getAlly().setEsfuerzo(Integer.parseInt(jTextFieldEsfuerzo.getText()));
+        playSet.getAlly().setMinimo(Integer.parseInt(jTextFieldMinimo.getText()));
+        playSet.getAlly().setVida(jProgressBarVida.getValue());
         
         Pantalla leo = new Pantalla(playSet);
         leo.setVisible(true);
@@ -315,6 +320,18 @@ public class Aliado extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jComboBoxAccionActionPerformed
 
+    private void jComboBoxObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxObjetoActionPerformed
+        
+        String arma = jComboBoxObjeto.getSelectedItem().toString();
+        for(Arma r: playSet.getAlly().getvEquipo()){
+            if (arma.equals(r.getNombre())){
+                mAccion = objetos.Arma.getActions(r);
+            }
+        }
+        jComboBoxAccion.setModel(mAccion);
+        
+    }//GEN-LAST:event_jComboBoxObjetoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -351,9 +368,8 @@ public class Aliado extends javax.swing.JFrame {
         });
     }
 
-    
-    
-    
+    private DefaultComboBoxModel mAccion;
+    private DefaultComboBoxModel mArma;
     private Controlador playSet;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

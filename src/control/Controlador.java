@@ -5,15 +5,17 @@
  */
 package control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import objetos.Arma;
 import objetos.Player;
 
 /**
  *
  * @author alumnodaw
  */
-public class Controlador {
+public class Controlador implements Serializable {
     
     private Player ally;
     
@@ -33,15 +35,15 @@ public class Controlador {
     public Player getAlly() {
         return ally;
     }
-    public void setAlly(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo) {
-        ally = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+    public void setAlly(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo, ArrayList<Arma> vEquipo) {
+        ally = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo, vEquipo);
     }
 
     public Player getEnemy() {
         return enemy;
     }
-    public void setEnemy(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo) {
-        this.enemy = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+    public void setEnemy(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo, ArrayList<Arma> vEquipo) {
+        this.enemy = new Player(nombre, accion, arma, vida, estamina, minimo, esfuerzo, vEquipo);
     }
 
     public int getTurno() {

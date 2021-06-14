@@ -5,6 +5,8 @@
  */
 package objetos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author RedCa
@@ -25,8 +27,10 @@ public class Player {
     
     private int esfuerzo;
     
+    private ArrayList<Arma> vEquipo;
+    
 
-    public Player(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo) {
+    public Player(String nombre, String accion, String arma, int vida, int estamina, int minimo, int esfuerzo, ArrayList<Arma> vEquipo) {
         this.nombre = nombre;
         this.accion = accion;
         this.arma = arma;
@@ -34,6 +38,7 @@ public class Player {
         this.estamina = estamina;
         this.minimo = minimo;
         this.esfuerzo = esfuerzo;
+        this.vEquipo = vEquipo;
     }
 
     public String getNombre() {
@@ -84,6 +89,16 @@ public class Player {
     public void setEsfuerzo(int esfuerzo) {
         this.esfuerzo = esfuerzo;
     }
+
+    public ArrayList<Arma> getvEquipo() {
+        return vEquipo;
+    }
+
+    public void setvEquipo(ArrayList<Arma> vEquipo) {
+        this.vEquipo = vEquipo;
+    }
+    
+    
 
     @Override
     public String toString() {

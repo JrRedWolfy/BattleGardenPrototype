@@ -189,7 +189,10 @@ public class VistaLobo extends javax.swing.JFrame {
         jProgressBarEstamina.setValue(estamina);
         
         String nombre = lobo.getNombre();
-        playSet.setAlly(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+        
+        
+        playSet.getAlly().setEstamina(jProgressBarEstamina.getValue());
+        playSet.getAlly().setVida(jProgressBarVida.getValue());
         
         // Pendiente a añadir en un futuro: Armas [Lanza](NO Bloquea, Ataque golpea a Retroceder), [Ballesta](NO Bloquea, Atacar golpea a Retroceder, Traspasa Bloqueos de Armas)||
         // Mini-Eventos de Garden|| Estados como [Herido](Cuesta mas energia algunas acciones)

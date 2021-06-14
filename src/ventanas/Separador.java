@@ -6,6 +6,7 @@
 package ventanas;
 
 import control.Controlador;
+import historia.IODatos;
 
 /**
  *
@@ -36,18 +37,21 @@ public class Separador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButtonContinuar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(211, 109, 104));
 
-        jButton1.setBackground(new java.awt.Color(207, 86, 80));
-        jButton1.setFont(new java.awt.Font("Rekha", 1, 36)); // NOI18N
-        jButton1.setText("CONTINUAR");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonContinuar.setBackground(new java.awt.Color(207, 86, 80));
+        jButtonContinuar.setFont(new java.awt.Font("Rekha", 1, 36)); // NOI18N
+        jButtonContinuar.setText("CONTINUAR");
+        jButtonContinuar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jButtonContinuarMouseClicked(evt);
             }
         });
 
@@ -57,16 +61,30 @@ public class Separador extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(jButtonContinuar, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(jButtonContinuar, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jMenu1.setText("Opciones de Partida");
+
+        jMenuItem1.setText("Guardar Partida");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,13 +102,18 @@ public class Separador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jButtonContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonContinuarMouseClicked
         
         VistaLobo lobo = new VistaLobo(playSet);
         lobo.setVisible(true);
         this.dispose();
         
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jButtonContinuarMouseClicked
+
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+        
+        IODatos.guardarPartida(playSet);
+    }//GEN-LAST:event_jMenuItem1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -131,7 +154,10 @@ public class Separador extends javax.swing.JFrame {
     private Controlador playSet;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonContinuar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

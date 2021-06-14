@@ -188,7 +188,8 @@ public class VistaLeon extends javax.swing.JFrame {
         jProgressBarVida.setValue(vida);
         jProgressBarEstamina.setValue(estamina);
         String nombre = leon.getNombre();
-        playSet.setEnemy(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+        playSet.getEnemy().setEstamina(jProgressBarEstamina.getValue());
+        playSet.getEnemy().setVida(jProgressBarVida.getValue());
         
         // Pendiente a añadir en un futuro: Armas [Lanza](NO Bloquea, Ataque golpea a Retroceder), [Ballesta](NO Bloquea, Atacar golpea a Retroceder, Traspasa Bloqueos de Armas)||
         // Mini-Eventos de Garden|| Estados como [Herido](Cuesta mas energia algunas acciones)

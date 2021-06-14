@@ -6,6 +6,8 @@
 package ventanas;
 
 import control.Controlador;
+import javax.swing.DefaultComboBoxModel;
+import objetos.Arma;
 import objetos.Player;
 
 /**
@@ -30,6 +32,11 @@ public class Enemigo extends javax.swing.JFrame {
         jTextFieldNombreB.setText(playSet.getEnemy().getNombre());
         jProgressBarVidaB.setValue(playSet.getEnemy().getVida());
         jProgressBarEstaminaB.setValue(playSet.getEnemy().getEstamina());
+        mArma = new DefaultComboBoxModel();
+        for(Arma s: playSet.getEnemy().getvEquipo()){
+            mArma.addElement(s.getNombre());
+        }
+        jComboBoxObjetoB.setModel(mArma);
     }
 
     /**
@@ -91,6 +98,11 @@ public class Enemigo extends javax.swing.JFrame {
         jLabel5.setText("+");
 
         jTextFieldEsfuerzoB.setText("0");
+        jTextFieldEsfuerzoB.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldEsfuerzoBFocusLost(evt);
+            }
+        });
 
         jComboBoxAccionB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CURARSE", "BLOQUEAR", "FINTAR", "RETROCEDER", "ARREMETER", "ATACAR" }));
         jComboBoxAccionB.addActionListener(new java.awt.event.ActionListener() {
@@ -98,8 +110,6 @@ public class Enemigo extends javax.swing.JFrame {
                 jComboBoxAccionBActionPerformed(evt);
             }
         });
-
-        jComboBoxObjetoB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESPADA", "ESCUDO" }));
 
         jLabel6.setText("ACCION");
 
@@ -216,23 +226,14 @@ public class Enemigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        String nombre, turno, accion, arma;
-        int vida, estamina, esfuerzo, minimo;
+        String turno;
         
-        accion = jComboBoxAccionB.getSelectedItem().toString();
-        arma = jComboBoxObjetoB.getSelectedItem().toString();
-        
-        nombre = jTextFieldNombreB.getText();
-        vida = jProgressBarVidaB.getValue();
-        minimo = Integer.parseInt(jTextFieldMinimoB.getText());
-        estamina = jProgressBarEstaminaB.getValue();
-        esfuerzo = Integer.parseInt(jTextFieldEsfuerzoB.getText());
-        
-        if (nombre.equals("")){
-            nombre = "???";
-        }
-        
-        playSet.setEnemy(nombre, accion, arma, vida, estamina, minimo, esfuerzo);
+        playSet.getEnemy().setAccion(jComboBoxAccionB.getSelectedItem().toString());
+        playSet.getEnemy().setArma(jComboBoxObjetoB.getSelectedItem().toString());
+        playSet.getEnemy().setEstamina(jProgressBarEstaminaB.getValue());
+        playSet.getEnemy().setEsfuerzo(Integer.parseInt(jTextFieldEsfuerzoB.getText()));
+        playSet.getEnemy().setMinimo(Integer.parseInt(jTextFieldMinimoB.getText()));
+        playSet.getEnemy().setVida(jProgressBarVidaB.getValue());
         
         VistaLeon zone = new VistaLeon(playSet);
         zone.setVisible(true);
@@ -276,6 +277,23 @@ public class Enemigo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxAccionBActionPerformed
 
+    private void jTextFieldEsfuerzoBFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldEsfuerzoBFocusLost
+        int esfuerzo = Integer.parseInt(jTextFieldEsfuerzoB.getText());
+        int minimo = Integer.parseInt(jTextFieldMinimoB.getText());
+        int stamina = jProgressBarEstaminaB.getValue()-minimo;
+        
+        
+        if (esfuerzo%5!=0){
+            while (esfuerzo%5!=0){
+                esfuerzo -= 1;   
+            }
+        }
+        jTextFieldEsfuerzoB.setText("" + esfuerzo);
+        if (esfuerzo>stamina){
+            jTextFieldEsfuerzoB.setText("" + stamina);
+        }
+    }//GEN-LAST:event_jTextFieldEsfuerzoBFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -312,7 +330,7 @@ public class Enemigo extends javax.swing.JFrame {
         });
     }
 
-
+    private DefaultComboBoxModel mArma;
     private Controlador playSet;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

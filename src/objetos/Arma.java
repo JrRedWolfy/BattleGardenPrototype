@@ -5,6 +5,8 @@
  */
 package objetos;
 
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author alumnodaw
@@ -160,39 +162,74 @@ public class Arma {
     @Override
     public String toString() {
         
-        String stats = "";
+        String stats = nombre + "\n";
         
         if (bloquear==true){
-            stats += " +Proteccion total /n";
+            stats += " +Proteccion total \n";
         }
         if (bloqueoMenor==true){
-            stats += " +Proteccion Parcial /n";
+            stats += " +Proteccion Parcial \n";
         }
         if (ligera==true){
-            stats += " +Menos esfuerzo /n";
+            stats += " +Menos esfuerzo \n";
         }
         if (alcance==true){
-            stats += " +Ataca a distancia /n";
+            stats += " +Ataca a distancia \n";
         }
         if (pesada==true){
-            stats += " +Golpea mas duro /n";
+            stats += " +Golpea mas duro \n";
         }
         if (adaptable==true){
-            stats += " +Engaña al oponente /n";
+            stats += " +Engaña al oponente \n";
         }
         if (fina==true){
-            stats += " +Dificil de Bloquear /n";
+            stats += " +Dificil de Bloquear \n";
         }
         if (skilled==true){
-            stats += " +Esquivando la muerte /n";
+            stats += " +Esquivando la muerte \n";
         }
         if (sutil==true){
-            stats += " -Menos daño /n";
+            stats += " -Menos daño \n";
         }
+        if (inadecuada==true){
+            stats += " -Mucho menos daño \n";
+        }
+        stats += "";
         return stats;
     }
     
-    //  /n
+    
+    public static DefaultComboBoxModel getActions(Arma ar, int usos, int stamina){
+        DefaultComboBoxModel mAccion = new DefaultComboBoxModel();
+        
+        if (stamina > 10){
+            mAccion.addElement("RETROCEDER");
+        }
+        
+        
+        if (usos > 0){
+            mAccion.addElement("CURARSE");
+        }
+        
+        if (ar.isDesarmado()){
+            mAccion.addElement("RECUPERAR");
+        }
+        
+        
+        
+        if (ar.isAdaptable()){
+            mAccion.addElement("FINTAR");
+        }
+        
+        if (!ar.isSkilled()){
+            mAccion.addElement("ARREMETER");
+        }
+        
+        
+        
+        
+        return mAccion;
+    }
     
     
     

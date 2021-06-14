@@ -6,6 +6,7 @@
 package ventanas;
 
 import control.Controlador;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import objetos.Arma;
 import objetos.Player;
@@ -22,11 +23,17 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
-        //                    String nombre, boolean bloquear, boolean bloqueoMenor, boolean ligera, boolean alcance, boolean pesada, boolean adaptable, boolean fina, boolean skilled, boolean sutil, boolean inadecuada, int vida, boolean desarmado
-        Arma escudo = new Arma("Escudo", true, false, false, false, false, true, false, true, true, true, 100, false);
-        Arma espada = new Arma("Escudo", true, false, false, false, false, true, false, true, true, true, 100, false);
-        Arma daga = new Arma("Escudo", true, false, false, false, false, true, false, true, true, true, 100, false);
-        Arma arco = new Arma("Escudo", true, false, false, false, false, true, false, true, true, true, 100, false);
+        
+        ally = new Player("", "CURARSE", null, 100, 100, 0, 0, null);
+        enemy = new Player("", "CURARSE", null, 100, 100, 0, 0, null);
+
+        vArmas = new ArrayList();
+        vArmas.add(new Arma("Escudo", true, true, false, false, false, true, false, true, false, true, 150, false));
+        vArmas.add(new Arma("Espada", false, true, false, false, false, true, false, false, false, false, 100, false));
+        vArmas.add(new Arma("Daga", false, false, true, false, false, true, true, true, true, false, 100, false));
+        vArmas.add(new Arma("Arco", false, false, true, true, false, false, true, true, false, false, 100, false));
+        vArmas.add(new Arma("Hacha", false, true, false, false, true, false, false, false, false, false, 100, false));
+        vArmas.add(new Arma("Lanza", false, true, false, true, false, false, true, false, false, false, 100, false));
     }
 
     /**
@@ -47,8 +54,12 @@ public class Inicio extends javax.swing.JFrame {
         jTextAreaProp2 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaProp1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextAreaSec1 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextAreaSec2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -102,9 +113,27 @@ public class Inicio extends javax.swing.JFrame {
         jTextAreaProp1.setRows(5);
         jScrollPane2.setViewportView(jTextAreaProp1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige Secundaria:", "Escudo", "Espada", "Lanza", "Hacha", "Daga", "Arco" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige Secundaria:", "Escudo", "Espada", "Lanza", "Hacha", "Daga", "Arco" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jTextAreaSec1.setColumns(20);
+        jTextAreaSec1.setRows(5);
+        jScrollPane3.setViewportView(jTextAreaSec1);
+
+        jTextAreaSec2.setColumns(20);
+        jTextAreaSec2.setRows(5);
+        jScrollPane4.setViewportView(jTextAreaSec2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,19 +142,23 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4))
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldPlayer1)
                             .addComponent(jComboBoxArma1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldPlayer2)
                             .addComponent(jComboBoxArma2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,13 +176,17 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(jComboBoxArma1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                    .addComponent(jComboBox2))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4))
+                .addContainerGap())
         );
 
         pack();
@@ -159,10 +196,35 @@ public class Inicio extends javax.swing.JFrame {
         
         String player1 = jTextFieldPlayer1.getText();
         String player2 = jTextFieldPlayer2.getText();
+        String principalA = jComboBoxArma1.getSelectedItem().toString();
+        String principalB = jComboBoxArma2.getSelectedItem().toString();
+        String secundariaA = jComboBox1.getSelectedItem().toString();
+        String secundariaB = jComboBox2.getSelectedItem().toString();
+        allyEquip = new ArrayList();
+
+        enemyEquip = new ArrayList();
+
+        for(Arma r: vArmas){
+            if (principalA.equals(r.getNombre())){
+                allyEquip.add(r);
+            }
+            if (principalB.equals(r.getNombre())){
+                enemyEquip.add(r);
+            }
+            if (secundariaA.equals(r.getNombre())){
+                allyEquip.add(r);
+            }
+            if (secundariaB.equals(r.getNombre())){
+                enemyEquip.add(r);
+            }
+            
+        }
+        ally.setvEquipo(allyEquip);
+        enemy.setvEquipo(enemyEquip);
         
         DefaultListModel mDialogo = new DefaultListModel<String>();
-        Player ally = new Player(player1, "CURARSE", "ESPADA", 100, 100, 0, 0);
-        Player enemy = new Player(player2, "CURARSE", "ESPADA", 100, 100, 0, 0);
+        ally.setNombre(player1);
+        enemy.setNombre(player2);
         this.playSet = new Controlador(ally, enemy, 1, mDialogo);
         
         Aliado lobo = new Aliado(playSet);
@@ -181,22 +243,42 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jComboBoxArma1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxArma1ActionPerformed
         
-        
-        
-        
-        
-        
+        String arma = jComboBoxArma1.getSelectedItem().toString();
+        for(Arma f: vArmas){
+            if(f.getNombre().equals(arma)){
+                jTextAreaProp1.setText(f.toString());
+            }
+        } 
     }//GEN-LAST:event_jComboBoxArma1ActionPerformed
 
     private void jComboBoxArma2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxArma2ActionPerformed
         
-        
-        
-        
-        
-        
-        
+        String arma = jComboBoxArma2.getSelectedItem().toString();
+        for(Arma f: vArmas){
+            if(f.getNombre().equals(arma)){
+                jTextAreaProp2.setText(f.toString());
+            }
+        }
+ 
     }//GEN-LAST:event_jComboBoxArma2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        String arma = jComboBox1.getSelectedItem().toString();
+        for(Arma f: vArmas){
+            if(f.getNombre().equals(arma)){
+                jTextAreaSec1.setText(f.toString());
+            }
+        } 
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        String arma = jComboBox2.getSelectedItem().toString();
+        for(Arma f: vArmas){
+            if(f.getNombre().equals(arma)){
+                jTextAreaSec2.setText(f.toString());
+            }
+        } 
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,6 +315,11 @@ public class Inicio extends javax.swing.JFrame {
         });
     }
 
+    private Player ally;
+    private Player enemy;
+    private ArrayList<Arma> allyEquip;
+    private ArrayList<Arma> enemyEquip;
+    private ArrayList<Arma> vArmas;
     private Controlador playSet;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -243,8 +330,12 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxArma2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextAreaProp1;
     private javax.swing.JTextArea jTextAreaProp2;
+    private javax.swing.JTextArea jTextAreaSec1;
+    private javax.swing.JTextArea jTextAreaSec2;
     private javax.swing.JTextField jTextFieldPlayer1;
     private javax.swing.JTextField jTextFieldPlayer2;
     // End of variables declaration//GEN-END:variables
