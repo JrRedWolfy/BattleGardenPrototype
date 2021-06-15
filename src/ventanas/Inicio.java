@@ -28,7 +28,7 @@ public class Inicio extends javax.swing.JFrame {
         enemy = new Player("", "CURARSE", null, 100, 100, 0, 0, null);
 
         vArmas = new ArrayList();
-        vArmas.add(new Arma("Escudo", true, true, false, false, false, true, false, true, false, true, 150, false));
+        vArmas.add(new Arma("Escudo", true, true, false, false, false, true, false, false, false, true, 150, false));
         vArmas.add(new Arma("Espada", false, true, false, false, false, true, false, false, false, false, 100, false));
         vArmas.add(new Arma("Daga", false, false, true, false, false, true, true, true, true, false, 100, false));
         vArmas.add(new Arma("Arco", false, false, true, true, false, false, true, true, false, false, 100, false));

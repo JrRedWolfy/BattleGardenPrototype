@@ -202,32 +202,56 @@ public class Arma {
     public static DefaultComboBoxModel getActions(Arma ar, int usos, int stamina){
         DefaultComboBoxModel mAccion = new DefaultComboBoxModel();
         
-        if (stamina > 10){
-            mAccion.addElement("RETROCEDER");
+        if (stamina > 5){
+            if (ar.isBloqueoMenor()||ar.isBloquear()){
+            mAccion.addElement("BLOQUEAR");
+            }
+            
+            if (ar.isAlcance()&&ar.isLigera()){
+                mAccion.addElement("KITEAR");
+            } else {
+                mAccion.addElement("ARROJAR");
+            }
         }
         
+        if (stamina > 10){
+            mAccion.addElement("RETROCEDER");
+            if (ar.isSkilled()){
+                mAccion.addElement("ESQUIVAR");
+            }
+            
+            if (ar.isDesarmado()){
+                if (ar.getVida()>0){
+                mAccion.addElement("RECUPERAR");
+                mAccion.addElement("DESARMAR");
+                }
+            } else{
+                mAccion.addElement("ATACAR");
+            }
+        }
+        
+        if (stamina > 15){
+            if (ar.isAdaptable()){
+                mAccion.addElement("FINTAR");
+            }
+            
+            if (ar.isAdaptable()&&!ar.isBloquear()){
+                mAccion.addElement("HOSTIGAR");
+            }
+            
+            
+        }
+        
+        if (stamina > 25){
+            if (!ar.isSkilled()){
+            mAccion.addElement("ARREMETER");
+            }
+        }
         
         if (usos > 0){
             mAccion.addElement("CURARSE");
         }
-        
-        if (ar.isDesarmado()){
-            mAccion.addElement("RECUPERAR");
-        }
-        
-        
-        
-        if (ar.isAdaptable()){
-            mAccion.addElement("FINTAR");
-        }
-        
-        if (!ar.isSkilled()){
-            mAccion.addElement("ARREMETER");
-        }
-        
-        
-        
-        
+  
         return mAccion;
     }
     

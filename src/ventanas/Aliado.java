@@ -323,9 +323,10 @@ public class Aliado extends javax.swing.JFrame {
     private void jComboBoxObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxObjetoActionPerformed
         
         String arma = jComboBoxObjeto.getSelectedItem().toString();
+        int st = jProgressBarEstamina.getValue();
         for(Arma r: playSet.getAlly().getvEquipo()){
             if (arma.equals(r.getNombre())){
-                mAccion = objetos.Arma.getActions(r);
+                mAccion = objetos.Arma.getActions(r, usos, st);
             }
         }
         jComboBoxAccion.setModel(mAccion);
@@ -368,6 +369,7 @@ public class Aliado extends javax.swing.JFrame {
         });
     }
 
+    private int usos = 3;
     private DefaultComboBoxModel mAccion;
     private DefaultComboBoxModel mArma;
     private Controlador playSet;

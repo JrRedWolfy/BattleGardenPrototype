@@ -111,6 +111,12 @@ public class Enemigo extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxObjetoB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxObjetoBActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("ACCION");
 
         jLabel7.setText("OBJETO");
@@ -294,6 +300,20 @@ public class Enemigo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldEsfuerzoBFocusLost
 
+    private void jComboBoxObjetoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxObjetoBActionPerformed
+        
+        String arma = jComboBoxObjetoB.getSelectedItem().toString();
+        int st = jProgressBarEstaminaB.getValue();
+        for(Arma r: playSet.getEnemy().getvEquipo()){
+            if (arma.equals(r.getNombre())){
+                mAccion = objetos.Arma.getActions(r, usos, st);
+            }
+        }
+        jComboBoxAccionB.setModel(mAccion);
+        
+        
+    }//GEN-LAST:event_jComboBoxObjetoBActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -330,6 +350,8 @@ public class Enemigo extends javax.swing.JFrame {
         });
     }
 
+    private int usos = 3;
+    private DefaultComboBoxModel mAccion;
     private DefaultComboBoxModel mArma;
     private Controlador playSet;
     // Variables declaration - do not modify//GEN-BEGIN:variables
